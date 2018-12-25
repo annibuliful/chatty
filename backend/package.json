@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "dev": "nodemon src/",
+    "start": "node src/"
+  },
+  "dependencies": {
+    "fastify": "^1.13.3",
+    "fastify-compress": "^0.7.1",
+    "fastify-cors": "^1.0.0",
+    "fastify-helmet": "^3.0.0",
+    "fastify-swagger": "^0.16.2",
+    "rethinkdbdash": "^2.3.31",
+    "ws": "^6.1.2"
+  }
+}
