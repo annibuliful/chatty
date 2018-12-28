@@ -25,7 +25,7 @@ export default {
       },
     },
   },
-  async handler(req, res) {
+  handler: async (req, res) => {
     const { username, password } = req.body;
     if (username && password) {
       const userInfo = await getUser('users')
@@ -38,7 +38,7 @@ export default {
         if (check) {
           const jwtToken = jwt.sign(
             {
-              data: 'foobar',
+              identification: userInfo[0].id,
             },
             process.env.JWT_SECRET,
             { expiresIn: '2d' },
