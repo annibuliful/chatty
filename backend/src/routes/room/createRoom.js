@@ -53,12 +53,18 @@ export default {
         })
         .limit(1);
       if (userInfo.length !== 0) {
-        const room = await createRoom('rooms', {
-          userId,
-        });
-        res.send({
-          roomId: room.generated_keys,
-        });
+        try {
+          const room = await createRoom('rooms', {
+            userId,
+          });
+          res.send({
+            roomId: room.generated_keys,
+          });
+        } catch (e) {
+          res.status(500).send({
+            message: e,
+          });
+        }
       } else {
         res.status(403).send({
           message: 'action forbidden',
