@@ -1,4 +1,5 @@
 import routes from './routes';
+import webSocket from './websocket';
 
 const fastify = require('fastify')();
 const helmet = require('fastify-helmet');
@@ -17,6 +18,7 @@ export default async () => {
   try {
     await fastify.listen(3000, '0.0.0.0');
     console.log('listening 3000');
+    webSocket(fastify.server);
   } catch (err) {
     console.log(err);
     process.exit(1);
