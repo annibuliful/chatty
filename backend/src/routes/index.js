@@ -1,5 +1,5 @@
 import registerRoute from './register';
+import loginRoute from './login';
 import setupRoute from './setup';
-import helloRoute from './hello';
 
-export default [registerRoute, setupRoute, helloRoute];
+export default [registerRoute, setupRoute, loginRoute];

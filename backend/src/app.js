@@ -16,6 +16,7 @@ routes.forEach((element) => {
 export default async () => {
   try {
     await fastify.listen(3000, '0.0.0.0');
+    console.log('listening 3000');
   } catch (err) {
     process.exit(1);
   }

@@ -1,5 +1,4 @@
 import createTable from '../db/createTable';
-import db from '../db';
 
 export default {
   method: 'GET',
