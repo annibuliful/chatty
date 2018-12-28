@@ -2,15 +2,7 @@ import jwt from 'jsonwebtoken';
 import getUser from '../../db/getData';
 import createRoom from '../../db/createData';
 import getJWT from '../../utils/getJWT';
-
-const checkJWT = async (headers) => {
-  try {
-    await jwt.verify(getJWT(headers), process.env.JWT_SECRET);
-    return true;
-  } catch (e) {
-    return false;
-  }
-};
+import checkJWT from '../../utils/checkJWT';
 
 export default {
   method: 'POST',
@@ -52,7 +44,8 @@ export default {
     },
   },
   handler: async (req, res) => {
-    if (checkJWT(req.headers)) {
+    const checkToken = await checkJWT(req.headers);
+    if (checkToken) {
       const { userId } = jwt.decode(getJWT(req.headers));
       const userInfo = await getUser('users')
         .filter({
