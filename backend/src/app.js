@@ -4,9 +4,7 @@ const fastify = require('fastify')();
 const helmet = require('fastify-helmet');
 const compress = require('fastify-compress');
 const cors = require('fastify-cors');
-const httpError = require('fastify-sensible');
 // dependencies
-fastify.register(httpError);
 fastify.register(helmet, { hidePoweredBy: { setTo: 'Chatty' } });
 fastify.register(compress, { global: false });
 fastify.register(cors);

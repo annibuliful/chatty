@@ -38,7 +38,7 @@ export default {
         if (check) {
           const jwtToken = jwt.sign(
             {
-              identification: userInfo[0].id,
+              userId: userInfo[0].id,
             },
             process.env.JWT_SECRET,
             { expiresIn: '2d' },
