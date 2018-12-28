@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken';
 import getInfo from '../../db/getData';
 import createRoom from '../../db/createData';
 import getJWT from '../../utils/getJWT';
-import checkJWT from '../../utils/checkJWT';
 
 const checkRoomId = async (roomId) => {
   const roomInfo = await getInfo('rooms').get(roomId);

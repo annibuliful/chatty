@@ -5,20 +5,28 @@ export default {
   url: '/setup',
   schema: {
     querystring: {
-      username: { type: 'string' },
-      password: { type: 'integer' },
+      username: {
+        type: 'string',
+      },
+      password: {
+        type: 'integer',
+      },
     },
     response: {
       200: {
         type: 'object',
         properties: {
-          message: { type: 'string' },
+          message: {
+            type: 'string',
+          },
         },
       },
       500: {
         type: 'object',
         properites: {
-          message: { type: 'string' },
+          message: {
+            type: 'string',
+          },
         },
       },
     },
@@ -26,7 +34,9 @@ export default {
   async handler(req, res) {
     try {
       await createTable('users');
-      await createTable('chat');
+      await createTable('chats');
+      await createTable('rooms');
+      await createTable('member_room');
       res.send('setup!!');
     } catch (e) {
       res.status(500).send(e);
