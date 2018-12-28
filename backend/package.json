@@ -4,12 +4,21 @@
     "start": "node src/"
   },
   "dependencies": {
+    "dotenv": "^6.2.0",
     "fastify": "^1.13.3",
     "fastify-compress": "^0.7.1",
     "fastify-cors": "^1.0.0",
     "fastify-helmet": "^3.0.0",
     "fastify-swagger": "^0.16.2",
+    "jsonwebtoken": "^8.4.0",
     "rethinkdbdash": "^2.3.31",
     "ws": "^6.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.0"
   }
 }
