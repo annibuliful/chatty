@@ -17,6 +17,7 @@
     "dotenv": "^6.2.0",
     "fastify": "^1.13.3",
     "fastify-compress": "^0.7.1",
+    "fastify-cookie": "^2.1.5",
     "fastify-cors": "^1.0.0",
     "fastify-helmet": "^3.0.0",
     "fastify-sensible": "^1.0.0",

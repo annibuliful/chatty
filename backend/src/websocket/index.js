@@ -6,8 +6,14 @@ export default (server) => {
   wss.on('connection', (ws) => {
     ws.room = [];
     ws.on('message', async (data) => {
-      const message = JSON.parse(data);
-      await controller(message, ws, wss);
+      try {
+        const message = JSON.parse(data);
+        await controller(message, ws, wss);
+      } catch (e) {
+        ws.send('Invalid Data');
+        console.error('Invalid Data');
+        ws.close();
+      }
     });
 
     ws.on('error', e => console.log(e));

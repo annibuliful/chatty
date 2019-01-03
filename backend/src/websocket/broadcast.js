@@ -2,11 +2,12 @@ import createChat from '../db/createData';
 
 export default async (message, wss) => {
   await wss.clients.forEach(async (client) => {
-    if (client.room.indexOf(JSON.parse(message).roomId) > -1) {
+    if (client.room.indexOf(message.roomId) > -1) {
       try {
-        await createChat('chats', JSON.parse(message));
-        client.send(message);
+        await createChat('chats', message);
+        client.send(JSON.stringify(message));
       } catch (e) {
+        console.log(e);
         client.send('Service Unavailable');
         client.close();
       }
