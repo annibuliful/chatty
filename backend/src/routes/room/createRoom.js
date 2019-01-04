@@ -5,16 +5,19 @@ import getJWT from '../../utils/getJWT';
 
 export default {
   method: 'POST',
-  url: '/room/create',
+  url: '/rooms',
   schema: {
     body: {
       type: 'object',
       properties: {
-        roomName: {
+        name: {
+          type: 'string',
+        },
+        description: {
           type: 'string',
         },
       },
-      required: ['roomName'],
+      required: ['name', 'description'],
     },
     headers: {
       type: 'object',
@@ -67,8 +70,10 @@ export default {
       .limit(1);
     if (userInfo.length !== 0) {
       try {
+        const { name, description } = req.body;
         const room = await createRoom('rooms', {
-          roomName: req.body.roomName,
+          name,
+          description,
         });
         await createRoom('member_room', {
           roomId: room.generated_keys[0],
