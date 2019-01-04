@@ -1,14 +1,26 @@
-import logger from 'pino';
+import pino from 'pino';
 
-export const trace = (message) => {
+const logger = pino({
+  useLevelLabels: true,
+  base: {},
+});
+const trace = (message) => {
   logger.info(message);
 };
-export const warn = (message) => {
+const warn = (message) => {
   logger.warn(message);
 };
-export const error = (message) => {
+const error = (message) => {
   logger.error(message);
 };
-export default (message) => {
+
+const info = (message) => {
   logger.info(message);
+};
+
+export default {
+  info,
+  error,
+  warn,
+  trace,
 };

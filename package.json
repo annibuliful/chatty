@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "pino-pretty": "^2.5.0",
+    "pretty-print": "^2.0.0"
+  }
+}
