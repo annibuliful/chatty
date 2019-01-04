@@ -1,7 +1,13 @@
 import pino from 'pino';
+import pretty from 'pino-pretty';
 
 const logger = pino({
   useLevelLabels: true,
+  prettyPrint: {
+    colorize: true,
+    levelFirst: true,
+  },
+  prettifier: pretty,
   base: {},
 });
 const trace = (message) => {
