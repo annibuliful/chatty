@@ -12,7 +12,7 @@ const checkRoomId = async (roomId) => {
 };
 export default {
   method: 'GET',
-  url: '/room/:roomId/join',
+  url: '/room/:roomId',
   schema: {
     params: {
       type: 'object',
