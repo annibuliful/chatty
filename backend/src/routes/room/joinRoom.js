@@ -37,30 +37,6 @@ export default {
           },
         },
       },
-      401: {
-        type: 'object',
-        properties: {
-          message: {
-            type: 'string',
-          },
-        },
-      },
-      403: {
-        type: 'object',
-        properites: {
-          message: {
-            type: 'string',
-          },
-        },
-      },
-      500: {
-        type: 'object',
-        properites: {
-          message: {
-            type: 'string',
-          },
-        },
-      },
     },
   },
   handler: async (req, res) => {
