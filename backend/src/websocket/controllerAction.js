@@ -12,5 +12,10 @@ export default async (data, ws, wss) => {
     }
   } else if (data.action === 'send') {
     await broadcast(data, wss);
+  } else if (data.action === 'disconnect') {
+    ws.close();
+  } else {
+    ws.send('No this action');
+    ws.close();
   }
 };

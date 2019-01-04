@@ -7,7 +7,6 @@ export default async (message, wss) => {
         await createChat('chats', message);
         client.send(JSON.stringify(message));
       } catch (e) {
-        console.log(e);
         client.send('Service Unavailable');
         client.close();
       }

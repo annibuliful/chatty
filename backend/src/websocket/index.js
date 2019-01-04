@@ -1,6 +1,6 @@
 import WebSocket from 'ws';
 import controller from './controllerAction';
-
+/* eslint-disable  no-param-reassign */
 export default (server) => {
   const wss = new WebSocket.Server({ server });
   wss.on('connection', (ws) => {
@@ -11,7 +11,6 @@ export default (server) => {
         await controller(message, ws, wss);
       } catch (e) {
         ws.send('Invalid Data');
-        console.error('Invalid Data');
         ws.close();
       }
     });
