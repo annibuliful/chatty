@@ -6,9 +6,13 @@ export default {
   method: 'POST',
   url: '/login',
   schema: {
-    querystring: {
-      username: { type: 'string' },
-      password: { type: 'string' },
+    body: {
+      type: 'object',
+      properties: {
+        username: { type: 'string' },
+        password: { type: 'string' },
+      },
+      required: ['username', 'password'],
     },
     response: {
       200: {
