@@ -46,6 +46,7 @@
           <button class="btn" id="btn-login" @click="register">Sign Up</button>
           <h4 class="link" @click="swapForm">Login</h4>
         </div>
+        <h3 id="pass-messge" v-if="isPass">{{ passMessage }}</h3>
         <h3 id="error-message" v-if="isError">{{ errorMessage }}</h3>
       </div>
     </div>
@@ -62,43 +63,62 @@ export default {
       password: "",
       isLoginForm: true,
       repeatPassword: "",
+      isPass: false,
       isError: false,
-      errorMessage: ""
+      errorMessage: "",
+      passMessage: ""
     };
   },
   methods: {
+    resetInput() {
+      this.username = "";
+      this.password = "";
+      this.repeatPassword = "";
+    },
     swapForm() {
       this.isLoginForm = !this.isLoginForm;
+      this.isError = false;
+      this.isPass = false;
     },
     async login() {
       if (this.username !== "" && this.password !== "") {
         try {
-          await loginService(this.username, this.password);
+          const { data } = await loginService(this.username, this.password);
+          localStorage.setItem("token", data.jwt);
         } catch ({ response }) {
           this.isError = true;
           this.errorMessage = response.data.message;
+          this.resetInput();
         }
       } else {
         this.isError = true;
         this.errorMessage = "Please input your username & password.";
+        this.resetInput();
       }
     },
     async register() {
       if (this.username !== "" && this.password !== "") {
         if (this.password === this.repeatPassword) {
           try {
-            const a = await registerService(this.username, this.password);
-            console.log(a);
-          } catch (e) {
-            console.log(e);
+            await registerService(this.username, this.password);
+            this.isError = false;
+            this.isPass = true;
+            this.passMessage = "registered Please Login";
+            this.resetInput();
+          } catch ({ response }) {
+            this.isError = true;
+            this.errorMessage = response.data.message;
+            this.resetInput();
           }
         } else {
           this.isError = true;
           this.errorMessage = "Your password mismatch.";
+          this.resetInput();
         }
       } else {
         this.isError = true;
         this.errorMessage = "Please input your username, password.";
+        this.resetInput();
       }
     }
   }
@@ -130,6 +150,8 @@ export default {
 .login-input {
   font-size: 18px;
   padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   box-shadow: none !important;
   border: 1px solid #44afdd !important;
   width: 30%;
@@ -166,6 +188,10 @@ export default {
   cursor: pointer;
 }
 
+#pass-messge {
+  color: green;
+  text-align: center;
+}
 #error-message {
   color: red;
   text-align: center;
