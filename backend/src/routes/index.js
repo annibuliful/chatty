@@ -1,5 +1,5 @@
-import registerRoute from './register';
-import loginRoute from './login';
+import registerRoute from './authentication/register';
+import loginRoute from './authentication/login';
 import setupRoute from './setup';
 import createChatRoomRoute from './room/createRoom';
 import joinChatRoomRoute from './room/joinRoom';

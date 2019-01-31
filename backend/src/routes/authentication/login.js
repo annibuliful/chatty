@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import utils from '../utils/encrypt-decrypt';
-import getUser from '../db/getData';
+import utils from '../../utils/encrypt-decrypt';
+import getUser from '../../db/getData';
 
 export default {
   method: 'POST',
