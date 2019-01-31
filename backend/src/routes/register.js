@@ -6,9 +6,13 @@ export default {
   method: 'POST',
   url: '/register',
   schema: {
-    querystring: {
-      username: { type: 'string' },
-      password: { type: 'string' },
+    body: {
+      type: 'object',
+      properties: {
+        username: { type: 'string' },
+        password: { type: 'string' },
+      },
+      required: ['username', 'password'],
     },
     response: {
       200: {
@@ -39,22 +43,18 @@ export default {
   },
   async handler(req, res) {
     const { username, password } = req.body;
-    if (username && password) {
-      const checkUser = await getData('users')
-        .filter({
-          username,
-        })
-        .limit(1);
-      if (checkUser.length === 0) {
-        const hashPassword = util.encrypt(password);
-        const data = { username, password: hashPassword };
-        await createData('users', data);
-        res.send({ message: 'registered' });
-      } else {
-        res.status(400).send({ message: 'conflict username' });
-      }
+    const checkUser = await getData('users')
+      .filter({
+        username,
+      })
+      .limit(1);
+    if (checkUser.length === 0) {
+      const hashPassword = util.encrypt(password);
+      const data = { username, password: hashPassword };
+      await createData('users', data);
+      res.send({ message: 'registered' });
     } else {
-      res.status(400).send({ message: 'please username or password' });
+      res.status(400).send({ message: 'conflict username' });
     }
   },
 };
