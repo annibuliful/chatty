@@ -1,6 +1,6 @@
-import createData from '../db/createData';
-import getData from '../db/getData';
-import util from '../utils/encrypt-decrypt';
+import createData from '../../db/createData';
+import getData from '../../db/getData';
+import util from '../../utils/encrypt-decrypt';
 
 export default {
   method: 'POST',
